@@ -21,11 +21,14 @@ const Header: React.FC = () => {
           <div className="w-[80%] h-[10vh] lg:w-[93%] flex justify-evenly items-center">
             <div className="w-[50%] lg:w-[30%] flex justify-start">
               {/* <img src={logo} className="w-[250px]" alt="log" /> */}
-              <h2 className="companyName mt-2">Eshaa Ayurveda</h2>
+              <h2 className="companyName mt-2 text-[20px] font-bold cursor-pointer">
+                <span className="text-[#0478df]">ZAdPro </span>
+                <span className="text-[#fca000]">Express Logistics</span>
+              </h2>
             </div>
             <div className="hidden lg:flex w-[90%] justify-center gap-x-10">
               <div
-                className="text-[20px] cursor-pointer mt-2 font-semibold underline-animation"
+                className="text-[20px] cursor-pointer mt-2 font-bold underline-animation"
                 onClick={() => {
                   handleNavigation("/");
                 }}
@@ -33,7 +36,7 @@ const Header: React.FC = () => {
                 Home
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-semibold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
                 onClick={() => {
                   handleNavigation("/about");
                 }}
@@ -41,25 +44,25 @@ const Header: React.FC = () => {
                 About
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-semibold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
                 onClick={() => {
-                  handleNavigation("/treatments");
+                  handleNavigation("/modules");
                 }}
               >
                 Modules
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-semibold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
                 onClick={() => {
-                  handleNavigation("/price");
+                  handleNavigation("/blogs");
                 }}
               >
-                Pricing
+                Blogs
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-semibold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
                 onClick={() => {
-                  handleNavigation("/appointments");
+                  handleNavigation("/contact");
                 }}
               >
                 Contact
@@ -111,7 +114,7 @@ const Header: React.FC = () => {
           <div className="flex flex-col items-center justify-start h-full">
             <div className="w-[80%] mt-10">
               <div
-                className="text-[20px] cursor-pointer py-3 font-semibold"
+                className="text-[20px] cursor-pointer py-3 font-bold"
                 onClick={() => {
                   handleNavigation("/");
                 }}
@@ -119,7 +122,7 @@ const Header: React.FC = () => {
                 Home
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-semibold"
+                className="text-[20px] cursor-pointer  py-3 font-bold"
                 onClick={() => {
                   handleNavigation("/about");
                 }}
@@ -127,25 +130,25 @@ const Header: React.FC = () => {
                 About
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-semibold"
+                className="text-[20px] cursor-pointer  py-3 font-bold"
                 onClick={() => {
-                  handleNavigation("/treatments");
+                  handleNavigation("/modules");
                 }}
               >
                 Modules
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-semibold"
+                className="text-[20px] cursor-pointer  py-3 font-bold"
                 onClick={() => {
-                  handleNavigation("/price");
+                  handleNavigation("/blogs");
                 }}
               >
-                Pricing
+                Blogs
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-semibold"
+                className="text-[20px] cursor-pointer  py-3 font-bold"
                 onClick={() => {
-                  handleNavigation("/appointments");
+                  handleNavigation("/contact");
                 }}
               >
                 Contact
