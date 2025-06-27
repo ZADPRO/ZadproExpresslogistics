@@ -1,11 +1,11 @@
 .contactUsBanner {
-  background-image: url("../../assets/contact/contacat.jpg");
+  background-image: url("../../assets/contact/contactUsBanners.jpg");
   position: relative;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
-  height: 60vh;
+  height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
