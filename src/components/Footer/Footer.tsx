@@ -74,12 +74,12 @@ const Footer: React.FC = () => {
               <span className="font-medium">Phone:</span> +968 97424232
             </li>
             <li>
-              <span className="font-medium">Email:</span> sales@setoman.com,{" "}
+              <span className="font-medium">Email:</span>{" "}
+              expresslogistics@zadroit.com,{" "}
             </li>
-            <li>info.setoman@gmail.com </li>
+            <li>info@zadroit.com </li>
             <li>
-              <span className="font-medium">Location:</span> P.O Box: 65, P.C:
-              121, Plot No. 50, Al Khalili Building, Barka, Sultanate of Oman.
+              <span className="font-medium">Location:</span> Salem
             </li>
           </ul>
         </div>
