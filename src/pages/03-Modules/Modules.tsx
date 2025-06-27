@@ -15,27 +15,23 @@ const Modules: React.FC = () => {
       </div>
 
       <div className="max-w-6xl mx-auto">
-        {/* Image Layout Section */}
         <div className="relative w-full h-[600px] mt-20">
-          {/* Center Image - behind others */}
           <img
             src={centerImage}
             alt="Center Module"
-            className="w-[65%] mx-auto z-0 relative"
+            className="w-[65%] mx-auto z-0 relative shadow-2xl rounded-xl transition duration-500 ease-in-out hover:scale-105"
           />
 
-          {/* Left Image - absolute with margin-top */}
           <img
             src={leftImage}
             alt="Left Module"
-            className="w-[40%] absolute top-[250px] left-0 z-10"
+            className="w-[40%] absolute top-[280px] left-0 z-10 shadow-xl rounded-xl transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl"
           />
 
-          {/* Right Image - absolute with margin-top */}
           <img
             src={rightImage}
             alt="Right Module"
-            className="w-[40%] absolute top-[250px] right-0 z-10"
+            className="w-[40%] absolute top-[200px] right-0 z-10 shadow-xl rounded-xl transition duration-500 ease-in-out hover:scale-105 hover:shadow-2xl"
           />
         </div>
       </div>
