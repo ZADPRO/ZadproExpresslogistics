@@ -2,16 +2,16 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#090a58] text-white py-10 px-4">
+    <footer className="bg-gray-900 text-white py-10 px-4">
       <div className="max-w-7xl mx-auto flex gap-8 lg:flex-row flex-col">
         {/* Section 1 - Company Name + Description */}
         <div className="flex-2">
           <h2 className="text-2xl font-bold mb-4 text-[#fca000]">
-            Shams Engineering & Trading LLC
+            EXPRESS LOGISTICS{" "}
           </h2>
           <p className="text-sm text-gray-300">
-            Delivering innovative construction and trading solutions with a
-            commitment to quality, speed, and client satisfaction.
+            One Unified Platform to Book, Track, Manage, and Report Shipments
+            with Real-Time Finance and Employee Insights.
           </p>
         </div>
 
@@ -39,18 +39,18 @@ const Footer: React.FC = () => {
             </li>
             <li>
               <a
-                href="/services"
+                href="/modules"
                 className="hover:text-[#fca000] hover:font-semibold transition"
               >
-                Services
+                Modules
               </a>
             </li>
             <li>
               <a
-                href="/projects"
+                href="/blogs"
                 className="hover:text-[#fca000] hover:font-semibold transition"
               >
-                Projects
+                Blogs
               </a>
             </li>
             <li>
@@ -102,8 +102,8 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="border-t border-gray-700 mt-10 pt-6 text-center text-sm text-gray-500">
-        &copy; {new Date().getFullYear()} Shams Engineering & Trading LLC. All
-        rights reserved.
+        &copy; {new Date().getFullYear()} Zadroit - ZAdPro Express Logistics.
+        All rights reserved.
       </div>
     </footer>
   );

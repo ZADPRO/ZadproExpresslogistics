@@ -1,14 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
   const [menuStatus, setMenuStatus] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const handleNavigation = (path: string) => {
     navigate(path);
     setMenuStatus(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
@@ -35,15 +49,21 @@ const Header: React.FC = () => {
             </div>
             <div className="hidden lg:flex w-[90%] justify-center gap-x-10">
               <div
-                className="text-[20px] cursor-pointer font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
-                onClick={() => {
-                  handleNavigation("/");
-                }}
+                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
+                  scrolled
+                    ? "text-black hover:text-[#090a58]"
+                    : "text-white hover:text-[#fca000]"
+                }`}
+                onClick={() => handleNavigation("/")}
               >
                 Home
               </div>
               <div
-                className="text-[20px] cursor-pointer  font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
+                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
+                  scrolled
+                    ? "text-black hover:text-[#090a58]"
+                    : "text-white hover:text-[#fca000]"
+                }`}
                 onClick={() => {
                   handleNavigation("/about");
                 }}
@@ -51,7 +71,11 @@ const Header: React.FC = () => {
                 About
               </div>
               <div
-                className="text-[20px] cursor-pointer  font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
+                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
+                  scrolled
+                    ? "text-black hover:text-[#090a58]"
+                    : "text-white hover:text-[#fca000]"
+                }`}
                 onClick={() => {
                   handleNavigation("/modules");
                 }}
@@ -59,7 +83,11 @@ const Header: React.FC = () => {
                 Modules
               </div>
               <div
-                className="text-[20px] cursor-pointer  font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
+                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
+                  scrolled
+                    ? "text-black hover:text-[#090a58]"
+                    : "text-white hover:text-[#090a58]"
+                }`}
                 onClick={() => {
                   handleNavigation("/blogs");
                 }}
@@ -67,7 +95,11 @@ const Header: React.FC = () => {
                 Blogs
               </div>
               <div
-                className="text-[20px] cursor-pointer  font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
+                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
+                  scrolled
+                    ? "text-black hover:text-[#090a58]"
+                    : "text-white hover:text-[#090a58]"
+                }`}
                 onClick={() => {
                   handleNavigation("/contact");
                 }}
