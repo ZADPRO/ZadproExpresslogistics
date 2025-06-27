@@ -21,14 +21,14 @@ const Header: React.FC = () => {
           <div className="w-[80%] h-[10vh] lg:w-[93%] flex justify-evenly items-center">
             <div className="w-[50%] lg:w-[30%] flex justify-start">
               {/* <img src={logo} className="w-[250px]" alt="log" /> */}
-              <h2 className="companyName mt-2 text-[20px] font-bold cursor-pointer">
-                <span className="text-[#0478df]">ZAdPro </span>
+              <h2 className="companyName mt-2 text-[22px] font-bold cursor-pointer tracking-wide">
+                <span className="text-[#090a58]">ZAdPro </span>
                 <span className="text-[#fca000]">Express Logistics</span>
               </h2>
             </div>
             <div className="hidden lg:flex w-[90%] justify-center gap-x-10">
               <div
-                className="text-[20px] cursor-pointer mt-2 font-bold underline-animation"
+                className="text-[20px] cursor-pointer mt-2 font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
                 onClick={() => {
                   handleNavigation("/");
                 }}
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
                 Home
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
                 onClick={() => {
                   handleNavigation("/about");
                 }}
@@ -44,7 +44,7 @@ const Header: React.FC = () => {
                 About
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
                 onClick={() => {
                   handleNavigation("/modules");
                 }}
@@ -52,7 +52,7 @@ const Header: React.FC = () => {
                 Modules
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
                 onClick={() => {
                   handleNavigation("/blogs");
                 }}
@@ -60,7 +60,7 @@ const Header: React.FC = () => {
                 Blogs
               </div>
               <div
-                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation"
+                className="text-[20px] cursor-pointer  mt-2 font-bold underline-animation hover:text-[#090a58] transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300"
                 onClick={() => {
                   handleNavigation("/contact");
                 }}
