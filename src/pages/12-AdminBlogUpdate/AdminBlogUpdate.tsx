@@ -1,6 +1,8 @@
 import React, { useRef, useState } from "react";
 
 const AdminBlogUpdate: React.FC = () => {
+  const [showPreview, setShowPreview] = useState(false);
+
   const [image, setImage] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [title, setTitle] = useState("");
@@ -12,8 +14,16 @@ const AdminBlogUpdate: React.FC = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setImage(file);
-      setPreview(URL.createObjectURL(file));
+      const img = new Image();
+      img.onload = () => {
+        if (img.width < 800 || img.height < 400) {
+          alert("Please upload a proper blog cover image (min 800x400px)");
+        } else {
+          setImage(file);
+          setPreview(URL.createObjectURL(file));
+        }
+      };
+      img.src = URL.createObjectURL(file);
     }
   };
 
@@ -47,6 +57,10 @@ const AdminBlogUpdate: React.FC = () => {
     setTags([]);
     setTagInput("");
     if (editorRef.current) editorRef.current.innerHTML = "";
+  };
+
+  const exec = (cmd: string, value: any = null) => {
+    document.execCommand(cmd, false, value);
   };
 
   return (
@@ -98,39 +112,61 @@ const AdminBlogUpdate: React.FC = () => {
           </div>
 
           {/* Rich Text Editor */}
-          <div>
-            <label className="block font-medium mb-2">Content</label>
-            <div className="border rounded-md">
-              <div className="flex gap-2 p-2 border-b bg-gray-100">
-                <button
-                  type="button"
-                  onClick={() => document.execCommand("bold")}
-                  className="font-bold"
-                >
-                  B
-                </button>
-                <button
-                  type="button"
-                  onClick={() => document.execCommand("italic")}
-                  className="italic"
-                >
-                  I
-                </button>
-                <button
-                  type="button"
-                  onClick={() => document.execCommand("underline")}
-                  className="underline"
-                >
-                  U
-                </button>
-              </div>
-              <div
-                ref={editorRef}
-                contentEditable
-                className="min-h-[200px] p-3 focus:outline-none"
-              ></div>
-            </div>
+          <div className="flex gap-2 p-2 border-b bg-gray-100 flex-wrap">
+            <select
+              onChange={(e) => exec("fontName", e.target.value)}
+              className="border px-2"
+            >
+              <option value="Arial">Arial</option>
+              <option value="Times New Roman">Times New Roman</option>
+              <option value="Verdana">Verdana</option>
+            </select>
+
+            <select
+              onChange={(e) => exec("fontSize", e.target.value)}
+              className="border px-2"
+            >
+              <option value="1">Small</option>
+              <option value="3">Normal</option>
+              <option value="5">Large</option>
+              <option value="7">Huge</option>
+            </select>
+
+            <button onClick={() => exec("bold")} className="font-bold">
+              B
+            </button>
+            <button onClick={() => exec("italic")} className="italic">
+              I
+            </button>
+            <button onClick={() => exec("underline")} className="underline">
+              U
+            </button>
+
+            <button onClick={() => exec("justifyLeft")}>Left</button>
+            <button onClick={() => exec("justifyCenter")}>Center</button>
+            <button onClick={() => exec("justifyRight")}>Right</button>
+            <button onClick={() => exec("justifyFull")}>Justify</button>
+
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = () =>
+                    exec("insertImage", reader.result as string);
+                  reader.readAsDataURL(file);
+                }
+              }}
+              className="text-sm"
+            />
           </div>
+          <div
+            ref={editorRef}
+            contentEditable
+            className="min-h-[200px] p-3 focus:outline-none"
+          ></div>
         </div>
 
         {/* Right - 40% */}
@@ -203,8 +239,48 @@ const AdminBlogUpdate: React.FC = () => {
               Clear
             </button>
           </div>
+          <button
+            onClick={() => setShowPreview(true)}
+            className="bg-green-600 text-white px-6 py-3 rounded-md font-semibold w-full"
+          >
+            Preview
+          </button>
         </div>
       </div>
+      {showPreview && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white max-w-[800px] w-full rounded-lg p-6 overflow-auto max-h-[90vh]">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-bold">Blog Preview</h2>
+              <button
+                onClick={() => setShowPreview(false)}
+                className="text-red-500 text-xl"
+              >
+                ×
+              </button>
+            </div>
+            {preview && (
+              <img
+                src={preview}
+                alt="Cover"
+                className="w-full max-h-[300px] object-contain rounded mb-4"
+              />
+            )}
+            <h1 className="text-2xl font-semibold mb-2">{title}</h1>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: editorRef.current?.innerHTML || "",
+              }}
+              className="prose max-w-none"
+            ></div>
+            <div className="mt-4 text-sm text-gray-600">
+              <strong>Tags:</strong> {tags.join(", ")}
+              <br />
+              <strong>Status:</strong> {status}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
