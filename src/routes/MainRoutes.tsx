@@ -22,11 +22,15 @@ import AdminBlogUpdate from "../pages/12-AdminBlogUpdate/AdminBlogUpdate";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
-  const isAdminRoute = location.pathname.startsWith("/admin");
+  const path = location.pathname;
+
+  const isAdminRoute = path.startsWith("/admin");
+  const isAdminLogin = path === "/admin/login";
 
   return (
     <>
-      {!isAdminRoute ? <Header /> : <AdminHeader />}
+      {!isAdminRoute ? <Header /> : !isAdminLogin ? <AdminHeader /> : null}
+
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
@@ -39,6 +43,7 @@ const AppLayout: React.FC = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/auth/blogPage" element={<AdminBlogUpdate />} />
       </Routes>
+
       {!isAdminRoute && <Footer />}
     </>
   );
