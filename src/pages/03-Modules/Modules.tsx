@@ -5,7 +5,7 @@ import centerImage from "../../assets/modules/booking.png";
 import leftImage from "../../assets/modules/settings.png";
 import rightImage from "../../assets/modules/upload.png";
 
-import Module001 from "../../assets/modules/001.jpg";
+// import Module001 from "../../assets/modules/001.jpg";
 
 const Modules: React.FC = () => {
   return (
@@ -89,7 +89,7 @@ const Modules: React.FC = () => {
               {
                 title: "Transaction Mapping",
                 desc: "Map vendor purchases by uploading leaves. Prevents duplicates and ensures traceable transaction history for compliance and audit.",
-                icon: "📂",
+                icon: "🧾",
               },
               {
                 title: "Finance Tracking",
@@ -109,7 +109,7 @@ const Modules: React.FC = () => {
               {
                 title: "Custom Settings",
                 desc: "Configure pricing, categories, and courier partners per your business model. Fully customizable for operational flexibility.",
-                icon: "📊",
+                icon: "⚙️",
               },
             ].map((mod, index) => (
               <div
