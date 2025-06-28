@@ -52,7 +52,7 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#fca000]"
+                    : "text-white hover:text-[#090a58]"
                 }`}
                 onClick={() => handleNavigation("/")}
               >
@@ -62,7 +62,7 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#fca000]"
+                    : "text-white hover:text-[#090a58]"
                 }`}
                 onClick={() => {
                   handleNavigation("/about");
@@ -74,7 +74,7 @@ const Header: React.FC = () => {
                 className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
                   scrolled
                     ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#fca000]"
+                    : "text-white hover:text-[#090a58]"
                 }`}
                 onClick={() => {
                   handleNavigation("/modules");
