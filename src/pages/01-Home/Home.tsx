@@ -7,7 +7,6 @@ import {
   FileUp,
   BarChart2,
 } from "lucide-react";
-
 import ERP from "../../assets/home/ERP.jpg";
 import "./Home.css";
 
@@ -19,104 +18,129 @@ const features = [
   },
   {
     title: "Real-Time Parcel Tracking",
-    desc: "No more manual checks. Track every consignment using live API integration.",
+    desc: "Track consignments live with integrated APIs — no manual work.",
     icon: <MapPin className="w-7 h-7 text-[#fca000]" />,
   },
   {
     title: "Role-Based Access",
-    desc: "Whether you're a Super Admin, Finance Officer, or Delivery Staff — everyone gets the right tools.",
+    desc: "Each user type—Admin, Finance, Staff—gets tailored dashboards & access.",
     icon: <ShieldCheck className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Finance Made Easy",
-    desc: "Automate dues tracking, reconcile payments, and stay on top of revenue — especially for regular customers.",
+    title: "Finance Automation",
+    desc: "Track dues, reconcile payments, and automate financial logs.",
     icon: <CreditCard className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Bulk Booking Simplified",
-    desc: "Upload hundreds of parcels via Excel. Prevents duplicates and errors for smooth ops.",
+    title: "Bulk Upload & Processing",
+    desc: "Upload and process hundreds of parcels via Excel in one go.",
     icon: <FileUp className="w-7 h-7 text-[#fca000]" />,
   },
   {
-    title: "Smart Reports & Analytics",
-    desc: "Generate actionable reports, categorize bookings, and gain clarity into your logistics data.",
+    title: "Analytics & Reports",
+    desc: "Get insights into logistics and finances with customizable reports.",
     icon: <BarChart2 className="w-7 h-7 text-[#fca000]" />,
   },
+];
+
+const stats = [
+  { label: "Happy Clients", value: "500+" },
+  { label: "Parcels Processed", value: "1.2M+" },
+  { label: "Finance Records", value: "950K+" },
+  { label: "Reports Generated", value: "30K+" },
 ];
 
 const Home: React.FC = () => {
   return (
     <div className="bg-gray-50">
-      {/* Banner */}
+      {/* Hero Banner */}
       <div className="HomeBanner">
-        <div className="HomeBannerOverlay">
-          <h1 className="HomeBannerTitle uppercase underline"></h1>
+        <div className="HomeBannerOverlay flex items-center justify-center h-[350px] text-white">
+          <h1 className="HomeBannerTitle text-4xl md:text-5xl font-bold uppercase underline">
+            {/* Welcome to Express Logistics ERP */}
+          </h1>
         </div>
       </div>
 
-      {/* Why Choose Us Section */}
-      <section className="px-4 py-20">
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10">
-          {/* Left: Content */}
-          <div className="flex-1 text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start mb-4">
-              <div className="w-[70px] h-[3px] bg-[#fca000] mr-4"></div>
-              <span className="text-lg font-bold text-[#090a58] uppercase">
+      {/* Why Choose Us */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <div className="flex items-center mb-4">
+              <div className="w-[60px] h-[3px] bg-[#fca000] mr-3"></div>
+              <span className="uppercase text-xl font-semibold text-[#090a58]">
                 Why Choose Us
               </span>
             </div>
-
-            <h2 className="text-3xl lg:text-4xl font-extrabold mb-6 text-[#090a58] leading-tight">
-              The Power of{" "}
-              <span className="text-[#fca000]">Express Logistics</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#090a58] leading-tight">
+              Streamline Your Logistics & Finance with{" "}
+              <span className="text-[#fca000]">One Platform</span>
             </h2>
-
-            <p className="text-lg text-gray-700 mb-10 leading-relaxed text-justify">
-              Managing courier operations or microfinance setups can be complex
-              — juggling courier partners, tracking manually, managing Excel
-              sheets, and using outdated tools. Express Logistics ERP simplifies
-              all of this with intelligent automation and centralized control.
+            <p className="text-gray-700 text-lg text-justify">
+              Our ERP system is purpose-built for courier and microfinance
+              businesses. We bring automation, real-time visibility, and
+              complete control across all operations—from parcel bookings to
+              payments, from employee access to reports.
             </p>
-
-            {/* Features */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {features.map((feature, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100"
-                >
-                  <div className="mb-4">{feature.icon}</div>
-                  <h3 className="text-lg font-semibold text-[#090a58] mb-2">
-                    {feature.title}
-                  </h3>
-                  <p className="text-sm text-gray-600">{feature.desc}</p>
-                </div>
-              ))}
-            </div>
           </div>
-
-          {/* Right: ERP Image */}
-          <div className="flex-1 flex justify-center">
-            <img
-              src={ERP}
-              alt="ERP System"
-              className="w-full max-w-[500px] h-auto rounded-xl shadow-xl object-cover"
-            />
+          <div>
+            <img src={ERP} alt="ERP" className="w-full rounded-xl shadow-xl" />
           </div>
         </div>
       </section>
 
-      {/* Optional CTA Section */}
-      <section className="bg-[#fca000] py-12 text-white text-center">
-        <h3 className="text-2xl md:text-3xl font-semibold mb-4">
-          Ready to streamline your logistics & finance?
+      {/* Feature Cards */}
+      <section className="py-12 px-4 bg-white">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl font-bold uppercase text-[#fca000] mb-4 underline">
+            ERP Modules Highlights
+          </h2>
+          <p className="text-gray-700 mb-10">
+            Discover the modules that make our ERP powerful, flexible, and
+            business-ready.
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {features.map((feature, index) => (
+              <div
+                key={index}
+                className="bg-gray-50 p-6 border-l-4 border-[#fca000] rounded-xl shadow hover:shadow-lg hover:scale-105 transition-transform duration-300 text-left"
+              >
+                <div className="mb-4">{feature.icon}</div>
+                <h3 className="text-lg font-semibold text-[#090a58] mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 text-sm">{feature.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-12 bg-gray-100">
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 text-center gap-8 px-4">
+          {stats.map((stat, idx) => (
+            <div key={idx}>
+              <div className="text-4xl font-bold text-[#fca000]">
+                {stat.value}
+              </div>
+              <div className="text-gray-700 font-medium">{stat.label}</div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="bg-[#fca000] py-14 text-white text-center px-4">
+        <h3 className="text-2xl md:text-3xl font-bold mb-4">
+          Ready to Transform Your Courier Business?
         </h3>
-        <p className="max-w-3xl mx-auto mb-6">
-          Discover how Express Logistics ERP can revolutionize your operations
-          with real-time tracking, role-based dashboards, and automation across
-          departments.
+        <p className="max-w-2xl mx-auto mb-6">
+          Join hundreds of businesses that trust Express Logistics ERP for their
+          daily operations. Get started today and streamline your workflows like
+          never before.
         </p>
-        <button className="bg-white text-[#fca000] px-6 py-3 font-semibold rounded-full shadow hover:bg-gray-100 transition">
+        <button className="bg-white text-[#fca000] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition duration-300">
           Request a Demo
         </button>
       </section>
