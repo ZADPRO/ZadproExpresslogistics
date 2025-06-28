@@ -20,6 +20,9 @@ import AdminHeader from "../pages/10-AdminHeader/AdminHeader";
 import AdminLogin from "../pages/11-AdminLogin/AdminLogin";
 import AdminBlogUpdate from "../pages/12-AdminBlogUpdate/AdminBlogUpdate";
 import AdminHome from "../pages/13-AdminHome/AdminHome";
+import AdminAchievements from "../pages/14-AdminAchievements/AdminAchievements";
+import AdminRelease from "../pages/15-AdminRelease/AdminRelease";
+import AdminFeedback from "../pages/16-AdminFeedback/AdminFeedback";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
@@ -44,9 +47,12 @@ const AppLayout: React.FC = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/auth/home" element={<AdminHome />} />
         <Route path="/admin/auth/blogPage" element={<AdminBlogUpdate />} />
-        <Route path="/admin/auth/achievements" element={<AdminBlogUpdate />} />
-        <Route path="/admin/auth/release" element={<AdminBlogUpdate />} />
-        <Route path="/admin/auth/feedback" element={<AdminBlogUpdate />} />
+        <Route
+          path="/admin/auth/achievements"
+          element={<AdminAchievements />}
+        />
+        <Route path="/admin/auth/release" element={<AdminRelease />} />
+        <Route path="/admin/auth/feedback" element={<AdminFeedback />} />
       </Routes>
 
       {!isAdminRoute && <Footer />}
