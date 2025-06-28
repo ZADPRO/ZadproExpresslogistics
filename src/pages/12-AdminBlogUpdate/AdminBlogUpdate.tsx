@@ -67,7 +67,7 @@ const AdminBlogUpdate: React.FC = () => {
   return (
     <div className="ml-[70px] bg-gray-50">
       {/* Header */}
-      <div className="flex w-full items-center justify-between px-3 py-2 shadow-md bg-white rounded-md mb-6">
+      <div className="fixed top-0 left-[70px] right-0 z-50 flex items-center justify-between px-3 py-2 shadow-md bg-white">
         <div className="flex flex-col">
           <p className="font-bold uppercase text-[#090a58]">Blog Page</p>
           <p className="text-sm text-gray-500">Create New Blog</p>
@@ -79,7 +79,7 @@ const AdminBlogUpdate: React.FC = () => {
       </div>
 
       {/* Blog Layout */}
-      <div className="flex gap-6 p-3 h-[100%]">
+      <div className="flex gap-6 px-3 pt-[80px] h-[100%]">
         {/* Left - 60% */}
         <div className="w-[75%] bg-white rounded-xl shadow p-6 space-y-6">
           {/* Image Upload */}
