@@ -19,6 +19,7 @@ import Contact from "../pages/05-Contact/Contact";
 import AdminHeader from "../pages/10-AdminHeader/AdminHeader";
 import AdminLogin from "../pages/11-AdminLogin/AdminLogin";
 import AdminBlogUpdate from "../pages/12-AdminBlogUpdate/AdminBlogUpdate";
+import AdminHome from "../pages/13-AdminHome/AdminHome";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
@@ -41,7 +42,7 @@ const AppLayout: React.FC = () => {
 
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin/auth/home" element={<AdminBlogUpdate />} />
+        <Route path="/admin/auth/home" element={<AdminHome />} />
         <Route path="/admin/auth/blogPage" element={<AdminBlogUpdate />} />
       </Routes>
 

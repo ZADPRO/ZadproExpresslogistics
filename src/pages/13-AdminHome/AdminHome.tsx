@@ -1,21 +1,21 @@
 import React from "react";
 
-const AdminBlogUpdate: React.FC = () => {
+const AdminHome: React.FC = () => {
   return (
     <div className="ml-[70px]">
       <div className="flex w-full items-center justify-between px-3 py-2 shadow-md">
         <div className="flex flex-col">
-          <p className="font-bold uppercase">Blog Page</p>
-          <p className="text-sm">Create New Blog</p>
+          <p className="font-bold uppercase">Home Page</p>
+          <p className="text-sm">Overall Analysis</p>
         </div>
         <div className="flex flex-col">
           <p className="font-bold uppercase">Login User Name</p>
           <p className="text-sm">User Role</p>
         </div>
       </div>
-      <p>Admin Blog Page Creation</p>
+      <p>Admin Home Page drafted</p>
     </div>
   );
 };
 
-export default AdminBlogUpdate;
+export default AdminHome;
