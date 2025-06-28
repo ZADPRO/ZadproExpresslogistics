@@ -4,6 +4,8 @@ import developersImg from "../../assets/about/dev.jpg";
 import softwareImg from "../../assets/about/software.jpg";
 import coreBeleif from "../../assets/about/coreBeleif.png";
 
+import team from "../../assets/about/team.png";
+
 import "./About.css";
 
 const About: React.FC = () => {
@@ -74,35 +76,44 @@ const About: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row max-w-7xl mx-auto gap-8">
-        <div className="flex-1">
-          <div className="flex items-center justify-start mb-4">
-            <div className="w-[70px] h-[3px] bg-[#fca000] mr-4"></div>
-            <span className="text-xl whitespace-nowrap uppercase font-bold">
-              Our Core Beliefs{" "}
-            </span>
+      <div className="flex flex-col lg:flex-row max-w-7xl mx-auto gap-10 items-stretch p-6">
+        {/* Left Content */}
+        <div className="flex-1 flex flex-col">
+          {/* Section Heading */}
+          <div className="mb-6">
+            <div className="flex items-center mb-4">
+              <div className="w-[60px] h-[3px] bg-[#fca000] mr-4"></div>
+              <h2 className="text-xl uppercase font-bold tracking-wide text-[#333]">
+                Our Core Beliefs
+              </h2>
+            </div>
+            <p className="text-black lg:text-4xl text-2xl font-bold">
+              Shaping the future of businesses through intelligent, scalable,
+              and innovative technology solutions.
+            </p>
           </div>
-          <p>
-            Shaping the future of businesses through intelligent, scalable, and
-            innovative technology solutions.
-          </p>
-          <div className="flex">
-            <div className="flex-1">
-              <div className="flex flex-col">
-                <p>Icon</p>
-                <p>Our Vision</p>
+
+          {/* Vision and Mission Blocks */}
+          <div className="grid md:grid-cols-2 gap-6">
+            {/* Vision */}
+            <div className="p-5 bg-white rounded-xl shadow-lg border border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="text-2xl text-[#fca000]">🎯</div>
+                <h3 className="text-lg font-bold text-gray-900">Our Vision</h3>
               </div>
-              <p>
+              <p className="text-gray-600 text-lg text-justify">
                 We empower businesses through technology, driving innovation,
                 growth, and success in a constantly evolving world.
               </p>
             </div>
-            <div className="flex-1">
-              <div className="flex flex-col">
-                <p>Icon</p>
-                <p>Our Mission</p>
+
+            {/* Mission */}
+            <div className="p-5 bg-white rounded-xl shadow-lg border border-gray-200">
+              <div className="flex items-center gap-3 mb-2">
+                <div className="text-2xl text-[#fca000]">🚀</div>
+                <h3 className="text-lg font-bold text-gray-900">Our Mission</h3>
               </div>
-              <p>
+              <p className="text-gray-600 text-lg text-justify">
                 We simplify technology for businesses by delivering smart,
                 scalable, and secure IT solutions that enhance efficiency, boost
                 productivity, and drive long-term success.
@@ -110,8 +121,65 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className="flex-1">
-          <img src={coreBeleif} alt="" />
+
+        {/* Right Image */}
+        <div className="flex-1 flex">
+          <img
+            src={coreBeleif}
+            alt="Core Belief Illustration"
+            className="w-full h-auto lg:h-full object-cover rounded-xl shadow-xl"
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col max-w-7xl mx-auto items-stretch p-6">
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-[#fca000] uppercase underline tracking-wider">
+            Our Team
+          </h2>
+          <p className="text-lg text-gray-600 mt-2">
+            Your vision, our technology — together, we build the future.
+          </p>
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-col lg:flex-row gap-8 items-center">
+          {/* Image */}
+          <div className="flex-1 w-full">
+            <img
+              src={team}
+              alt="Team ZAdroit"
+              className="w-full h-auto lg:h-full object-cover rounded-xl shadow-xl"
+            />
+          </div>
+
+          {/* Text Block */}
+          <div className="flex-1 w-full flex flex-col gap-4">
+            <p className="text-3xl font-semibold text-[#111]">
+              Transforming challenges into opportunities with cutting-edge
+              digital solutions.
+            </p>
+            <p className="text-gray-700 leading-relaxed text-justify">
+              At <span className="font-bold text-[#fca000]">ZAdroit</span>, we
+              believe that technology is the key to unlocking limitless business
+              potential. As a leading provider of digital transformation
+              solutions, we empower businesses to embrace innovation, optimize
+              operations, and achieve sustainable growth in today’s
+              fast-evolving digital world.
+            </p>
+            <p className="text-gray-700 leading-relaxed text-justify">
+              With a deep understanding of{" "}
+              <span className="font-medium">cloud computing</span>,{" "}
+              <span className="font-medium">software development</span>,{" "}
+              <span className="font-medium">AI</span>, and{" "}
+              <span className="font-medium">cybersecurity</span>, we craft
+              solutions that drive efficiency, security, and success. Whether
+              you’re a startup, SME, or enterprise, ZAdroit delivers the
+              cutting-edge technology solutions you need to stay ahead of the
+              competition.
+            </p>
+          </div>
         </div>
       </div>
     </div>
