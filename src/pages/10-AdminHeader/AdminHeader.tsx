@@ -1,4 +1,12 @@
-import { House, LogOut, Menu, NotepadText } from "lucide-react";
+import {
+  House,
+  LogOut,
+  Menu,
+  MessageCircle,
+  NotepadText,
+  Rocket,
+  Trophy,
+} from "lucide-react";
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -35,6 +43,41 @@ const AdminHeader: React.FC = () => {
             <NotepadText size={24} />
             <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 hidden group-hover:block bg-[#fca000] text-white font-bold text-lg px-4 py-2 rounded shadow">
               Blogs
+            </span>
+          </div>
+          <div
+            onClick={() => navigate("/admin/auth/achievements")}
+            className={`group relative cursor-pointer p-3 rounded ${
+              isActive("/admin/auth/achievements")
+                ? "bg-white text-[#090a58]"
+                : ""
+            }`}
+          >
+            <Trophy size={24} />
+            <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 hidden group-hover:block bg-[#fca000] text-white font-bold text-lg px-4 py-2 rounded shadow">
+              Achievements
+            </span>
+          </div>
+          <div
+            onClick={() => navigate("/admin/auth/release")}
+            className={`group relative cursor-pointer p-3 rounded ${
+              isActive("/admin/auth/release") ? "bg-white text-[#090a58]" : ""
+            }`}
+          >
+            <Rocket size={24} />
+            <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 hidden group-hover:block bg-[#fca000] text-white font-bold text-lg px-4 py-2 rounded shadow">
+              Release
+            </span>
+          </div>
+          <div
+            onClick={() => navigate("/admin/auth/feedback")}
+            className={`group relative cursor-pointer p-3 rounded ${
+              isActive("/admin/auth/feedback") ? "bg-white text-[#090a58]" : ""
+            }`}
+          >
+            <MessageCircle size={24} />
+            <span className="absolute left-full top-1/2 -translate-y-1/2 ml-2 hidden group-hover:block bg-[#fca000] text-white font-bold text-lg px-4 py-2 rounded shadow">
+              Feedback
             </span>
           </div>
         </div>

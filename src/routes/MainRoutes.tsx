@@ -44,6 +44,9 @@ const AppLayout: React.FC = () => {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/auth/home" element={<AdminHome />} />
         <Route path="/admin/auth/blogPage" element={<AdminBlogUpdate />} />
+        <Route path="/admin/auth/achievements" element={<AdminBlogUpdate />} />
+        <Route path="/admin/auth/release" element={<AdminBlogUpdate />} />
+        <Route path="/admin/auth/feedback" element={<AdminBlogUpdate />} />
       </Routes>
 
       {!isAdminRoute && <Footer />}
