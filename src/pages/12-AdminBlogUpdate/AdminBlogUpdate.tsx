@@ -10,6 +10,7 @@ const AdminBlogUpdate: React.FC = () => {
   const [status, setStatus] = useState<"draft" | "published">("draft");
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState<string[]>([]);
+  const [publishDate, setPublishDate] = useState<string>("");
 
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -78,9 +79,9 @@ const AdminBlogUpdate: React.FC = () => {
       </div>
 
       {/* Blog Layout */}
-      <div className="flex gap-6 p-3">
+      <div className="flex gap-6 p-3 h-[100%]">
         {/* Left - 60% */}
-        <div className="w-[60%] bg-white rounded-xl shadow p-6 space-y-6">
+        <div className="w-[75%] bg-white rounded-xl shadow p-6 space-y-6">
           {/* Image Upload */}
           <div>
             <label className="block font-medium mb-2">Choose Image</label>
@@ -112,19 +113,21 @@ const AdminBlogUpdate: React.FC = () => {
           </div>
 
           {/* Rich Text Editor */}
-          <div className="flex gap-2 p-2 border-b bg-gray-100 flex-wrap">
+          <div className="flex flex-wrap gap-2 p-3 border-b bg-gray-100 rounded-t-md">
+            {/* Fonts */}
             <select
               onChange={(e) => exec("fontName", e.target.value)}
-              className="border px-2"
+              className="border px-2 py-1 rounded text-sm"
             >
               <option value="Arial">Arial</option>
               <option value="Times New Roman">Times New Roman</option>
               <option value="Verdana">Verdana</option>
             </select>
 
+            {/* Font Size */}
             <select
               onChange={(e) => exec("fontSize", e.target.value)}
-              className="border px-2"
+              className="border px-2 py-1 rounded text-sm"
             >
               <option value="1">Small</option>
               <option value="3">Normal</option>
@@ -132,24 +135,68 @@ const AdminBlogUpdate: React.FC = () => {
               <option value="7">Huge</option>
             </select>
 
-            <button onClick={() => exec("bold")} className="font-bold">
-              B
-            </button>
-            <button onClick={() => exec("italic")} className="italic">
-              I
-            </button>
-            <button onClick={() => exec("underline")} className="underline">
-              U
-            </button>
+            {/* Formatting */}
+            <div className="flex gap-1">
+              <button
+                onClick={() => exec("bold")}
+                className="px-2 py-1 border rounded font-bold hover:bg-gray-200"
+                title="Bold"
+              >
+                B
+              </button>
+              <button
+                onClick={() => exec("italic")}
+                className="px-2 py-1 border rounded italic hover:bg-gray-200"
+                title="Italic"
+              >
+                I
+              </button>
+              <button
+                onClick={() => exec("underline")}
+                className="px-2 py-1 border rounded underline hover:bg-gray-200"
+                title="Underline"
+              >
+                U
+              </button>
+            </div>
 
-            <button onClick={() => exec("justifyLeft")}>Left</button>
-            <button onClick={() => exec("justifyCenter")}>Center</button>
-            <button onClick={() => exec("justifyRight")}>Right</button>
-            <button onClick={() => exec("justifyFull")}>Justify</button>
+            {/* Alignment */}
+            <div className="flex gap-1">
+              <button
+                onClick={() => exec("justifyLeft")}
+                className="px-2 py-1 border rounded hover:bg-gray-200"
+                title="Align Left"
+              >
+                ⬅
+              </button>
+              <button
+                onClick={() => exec("justifyCenter")}
+                className="px-2 py-1 border rounded hover:bg-gray-200"
+                title="Align Center"
+              >
+                ⬍
+              </button>
+              <button
+                onClick={() => exec("justifyRight")}
+                className="px-2 py-1 border rounded hover:bg-gray-200"
+                title="Align Right"
+              >
+                ➡
+              </button>
+              <button
+                onClick={() => exec("justifyFull")}
+                className="px-2 py-1 border rounded hover:bg-gray-200"
+                title="Justify"
+              >
+                ☰
+              </button>
+            </div>
 
+            {/* Insert Image */}
             <input
               type="file"
               accept="image/*"
+              title="Insert Image"
               onChange={(e) => {
                 const file = e.target.files?.[0];
                 if (file) {
@@ -159,9 +206,10 @@ const AdminBlogUpdate: React.FC = () => {
                   reader.readAsDataURL(file);
                 }
               }}
-              className="text-sm"
+              className="text-sm border rounded p-1"
             />
           </div>
+
           <div
             ref={editorRef}
             contentEditable
@@ -170,7 +218,7 @@ const AdminBlogUpdate: React.FC = () => {
         </div>
 
         {/* Right - 40% */}
-        <div className="w-[40%] bg-white rounded-xl shadow p-6 space-y-6">
+        <div className="w-[25%] bg-white rounded-xl shadow p-6 space-y-6">
           {/* Publish State */}
           <div>
             <label className="block font-medium mb-2">Publish State</label>
@@ -184,6 +232,17 @@ const AdminBlogUpdate: React.FC = () => {
               <option value="draft">Draft</option>
               <option value="published">Published</option>
             </select>
+          </div>
+
+          {/* Publish Date */}
+          <div>
+            <label className="block font-medium mb-2">Publishing Date</label>
+            <input
+              type="date"
+              value={publishDate}
+              onChange={(e) => setPublishDate(e.target.value)}
+              className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#090a58]"
+            />
           </div>
 
           {/* Tags */}
@@ -277,6 +336,8 @@ const AdminBlogUpdate: React.FC = () => {
               <strong>Tags:</strong> {tags.join(", ")}
               <br />
               <strong>Status:</strong> {status}
+              <br />
+              <strong>Publish Date:</strong> {publishDate || "Not Set"}
             </div>
           </div>
         </div>
