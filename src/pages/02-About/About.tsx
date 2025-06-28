@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import developersImg from "../../assets/about/dev.jpg";
 import softwareImg from "../../assets/about/software.jpg";
@@ -6,9 +6,69 @@ import coreBeleif from "../../assets/about/coreBeleif.png";
 
 import team from "../../assets/about/team.png";
 
+import Glide from "@glidejs/glide";
+
 import "./About.css";
 
+const clientImages = [
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+  coreBeleif,
+];
+
 const About: React.FC = () => {
+  useEffect(() => {
+    const slider1 = new Glide(".glide-09", {
+      type: "carousel",
+      autoplay: 1,
+      animationDuration: 2500,
+      animationTimingFunc: "linear",
+      perView: 3,
+      classes: {
+        swipeable: "glide__swipeable",
+        dragging: "glide__dragging",
+        direction: {
+          ltr: "glide__ltr",
+          rtl: "glide__rtl",
+        },
+        type: {
+          slider: "glide__slider",
+          carousel: "glide__carousel",
+        },
+        slide: {
+          active: "glide__slide--active",
+          clone: "glide__slide--clone",
+        },
+        arrow: {
+          disabled: "glide__arrow--disabled",
+        },
+        nav: {
+          active: "glide__nav--active",
+        },
+      },
+      breakpoints: {
+        1024: {
+          perView: 2,
+        },
+        640: {
+          perView: 1,
+          gap: 36,
+        },
+      },
+    }).mount();
+
+    return () => {
+      slider1.destroy();
+    };
+  }, []);
+
   return (
     <div>
       <div className="AboutBanner">
@@ -72,6 +132,28 @@ const About: React.FC = () => {
                 solutions.
               </p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full md:w-10/12 mx-auto py-10">
+        <p className="text-center text-[25px] uppercase font-bold">
+          Our Clients
+        </p>
+        <div className="glide-09 relative w-full overflow-hidden py-6">
+          {/* Slides */}
+          <div data-glide-el="track">
+            <ul className="whitespace-no-wrap flex-no-wrap [backface-visibility:hidden] [transform-style:preserve-3d] [touch-action:pan-Y] [will-change:transform] relative flex w-full overflow-hidden p-0">
+              {clientImages.map((img, index) => (
+                <li key={index} className="px-4">
+                  <img
+                    src={img}
+                    alt={`Client ${index + 1}`}
+                    className="m-auto h-30 max-h-full w-auto max-w-full"
+                  />
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
