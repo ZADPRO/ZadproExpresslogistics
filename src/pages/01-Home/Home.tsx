@@ -65,7 +65,7 @@ const Home: React.FC = () => {
       {/* Why Choose Us */}
       <section className="py-16 px-4">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <div data-aos="fade-right">
             <div className="flex items-center mb-4">
               <div className="w-[60px] h-[3px] bg-[#fca000] mr-3"></div>
               <span className="uppercase text-xl font-semibold text-[#090a58]">
@@ -83,7 +83,7 @@ const Home: React.FC = () => {
               payments, from employee access to reports.
             </p>
           </div>
-          <div>
+          <div data-aos="fade-left">
             <img src={ERP} alt="ERP" className="w-full rounded-xl shadow-xl" />
           </div>
         </div>
@@ -103,6 +103,7 @@ const Home: React.FC = () => {
             {features.map((feature, index) => (
               <div
                 key={index}
+                data-aos="flip-left"
                 className="bg-gray-50 p-6 border-l-4 border-[#fca000] rounded-xl shadow hover:shadow-lg hover:scale-105 transition-transform duration-300 text-left"
               >
                 <div className="mb-4">{feature.icon}</div>
