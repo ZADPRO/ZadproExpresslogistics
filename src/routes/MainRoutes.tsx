@@ -23,6 +23,7 @@ import AdminHome from "../pages/13-AdminHome/AdminHome";
 import AdminAchievements from "../pages/14-AdminAchievements/AdminAchievements";
 import AdminRelease from "../pages/15-AdminRelease/AdminRelease";
 import AdminFeedback from "../pages/16-AdminFeedback/AdminFeedback";
+import AdminLIstAchievements from "../pages/14-AdminAchievements/AdminLIstAchievements";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
@@ -49,7 +50,7 @@ const AppLayout: React.FC = () => {
         <Route path="/admin/auth/blogPage" element={<AdminBlogUpdate />} />
         <Route
           path="/admin/auth/achievements"
-          element={<AdminAchievements />}
+          element={<AdminLIstAchievements />}
         />
         <Route path="/admin/auth/release" element={<AdminRelease />} />
         <Route path="/admin/auth/feedback" element={<AdminFeedback />} />
