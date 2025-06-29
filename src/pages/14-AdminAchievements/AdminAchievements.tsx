@@ -33,18 +33,8 @@ const AdminAchievements: React.FC = () => {
   };
 
   return (
-    <div className="ml-[70px] bg-gray-50 min-h-screen">
-      <div className="fixed top-0 left-[70px] right-0 z-50 flex items-center justify-between px-3 py-2 shadow-md bg-white">
-        <div className="flex flex-col">
-          <p className="font-bold uppercase text-[#090a58]">Home Page</p>
-          <p className="text-sm text-gray-500">Overall Analysis</p>
-        </div>
-        <div className="flex flex-col text-right">
-          <p className="font-bold uppercase">Login User Name</p>
-          <p className="text-sm text-gray-500">User Role</p>
-        </div>
-      </div>{" "}
-      <div className="min-h-screen pt-10 flex items-center justify-center bg-gray-100">
+    <div className="bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="w-full max-w-3xl px-4">
           <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6 border-l-4 border-[#090a58] pl-4">

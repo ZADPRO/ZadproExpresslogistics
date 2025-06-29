@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import AchievementCard from "./AchievementCard";
+import AdminAchievements from "./AdminAchievements";
 
 const dummyAchievements = [
   {
@@ -18,28 +19,55 @@ const dummyAchievements = [
   },
 ];
 
-const AdminLIstAchievements: React.FC = () => {
+const AdminListAchievements: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleEdit = (id: string) => {
     alert(`Edit achievement: ${id}`);
-    // Navigate to edit form or populate edit modal
   };
 
   const handleDelete = (id: string) => {
     const confirmDelete = window.confirm("Are you sure to delete this?");
     if (confirmDelete) {
       alert(`Deleted achievement: ${id}`);
-      // Call Firebase delete logic here
     }
   };
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
   return (
     <div>
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#000000ab]">
+          <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-2 right-3 text-gray-600 hover:text-red-600 font-bold text-xl"
+            >
+              ×
+            </button>
+            <div className="">
+              <AdminAchievements />
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="ml-[70px] min-h-screen bg-gray-100 px-4 py-10 space-y-6">
         <div className="flex flex-row items-center justify-between">
           <h2 className="text-2xl font-bold text-[#090a58] border-l-4 pl-4 border-[#090a58]">
             Achievements List
           </h2>
-          <p>Button - Add New</p>
+          <button
+            onClick={handleOpenModal}
+            className="bg-[#090a58] text-white px-4 py-2 rounded-md uppercase font-semibold hover:bg-[#090a58cc] transition"
+          >
+            Add New
+          </button>
         </div>
+
         {dummyAchievements.map((achievement) => (
           <AchievementCard
             key={achievement.id}
@@ -53,4 +81,4 @@ const AdminLIstAchievements: React.FC = () => {
   );
 };
 
-export default AdminLIstAchievements;
+export default AdminListAchievements;
