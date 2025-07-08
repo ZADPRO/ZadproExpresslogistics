@@ -33,8 +33,8 @@ const AdminAchievements: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-50">
-      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="bg-gray-50 max-w-7xl mx-auto px-4 text-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-100 text-3xl font-bold uppercase mb-4 underline text-[#fca000]">
         <div className="w-full max-w-3xl px-4">
           <div className="bg-white rounded-xl shadow-lg p-8 md:p-12">
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 mb-6 border-l-4 border-[#090a58] pl-4">

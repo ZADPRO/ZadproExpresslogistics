@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -20,10 +20,12 @@ import AdminHeader from "../pages/10-AdminHeader/AdminHeader";
 import AdminLogin from "../pages/11-AdminLogin/AdminLogin";
 import AdminBlogUpdate from "../pages/12-AdminBlogUpdate/AdminBlogUpdate";
 import AdminHome from "../pages/13-AdminHome/AdminHome";
-import AdminAchievements from "../pages/14-AdminAchievements/AdminAchievements";
+// import AdminAchievements from "../pages/14-AdminAchievements/AdminAchievements";
 import AdminRelease from "../pages/15-AdminRelease/AdminRelease";
 import AdminFeedback from "../pages/16-AdminFeedback/AdminFeedback";
 import AdminLIstAchievements from "../pages/14-AdminAchievements/AdminLIstAchievements";
+import BlogView from "../components/Blogs/BlogView";
+import ReleaseView from "../components/Release/ReleaseView";
 
 const AppLayout: React.FC = () => {
   const location = useLocation();
@@ -32,6 +34,19 @@ const AppLayout: React.FC = () => {
   const isAdminRoute = path.startsWith("/admin");
   const isAdminLogin = path === "/admin/login";
 
+  useEffect(() => {
+    if (path === "/blog-view") {
+      document.body.classList.add("blog-view-page");
+    } else {
+      document.body.classList.remove("blog-view-page");
+    }
+
+    if (path === "/release-view") {
+      document.body.classList.add("release-view-page");
+    } else {
+      document.body.classList.remove("release-view-page");
+    }
+  }, [path]);
   return (
     <>
       {!isAdminRoute ? <Header /> : !isAdminLogin ? <AdminHeader /> : null}
@@ -43,7 +58,8 @@ const AppLayout: React.FC = () => {
         <Route path="/modules" element={<Modules />} />
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/contact" element={<Contact />} />
-
+        <Route path="/blog-view" element={<BlogView />} />
+        <Route path="/release-view" element={<ReleaseView />} />
         {/* Admin Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/auth/home" element={<AdminHome />} />

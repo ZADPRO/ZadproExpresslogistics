@@ -1,94 +1,132 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Blogs.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import blogTemplateImg from "../../assets/blogs/blogTemplate.jpg";
-import { ShieldUser, Tags, TrendingUp } from "lucide-react";
+import decrypt from "../../Helper";
+import Achievements from "../17-Achievements/Achievements";
 
 interface Blog {
-  id: number;
-  date: string;
-  month: string;
-  author: string;
-  tag: string;
-  title: string;
-  image: string;
+  blogContent: string;
+  blogDate: string;
+  blogImage: string;
+  blogTitle: string;
+  signedImageUrl?: string;
 }
 
-const blogsData: Blog[] = [
-  {
-    id: 1,
-    date: "29",
-    month: "June",
-    author: "Admin",
-    tag: "Tag",
-    title:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod, deserunt veritatis!",
-    image: blogTemplateImg,
-  },
-  {
-    id: 2,
-    date: "30",
-    month: "June",
-    author: "Admin",
-    tag: "Fitness",
-    title:
-      "Alias aspernatur, perspiciatis incidunt recusandae dolorum consectetur culpa.",
-    image: blogTemplateImg,
-  },
-  {
-    id: 3,
-    date: "1",
-    month: "July",
-    author: "Admin",
-    tag: "Wellness",
-    title: "Inventore deleniti sed esse similique accusantium libero. Tempora?",
-    image: blogTemplateImg,
-  },
-];
-
 const Blogs: React.FC = () => {
+  const [listBlogs, setListBlogs] = useState<Blog[]>([]);
+  const [visibleCount, setVisibleCount] = useState(3);
+  const navigate = useNavigate();
+
+  const fetchBlogs = () => {
+    axios
+      .post(
+        `${import.meta.env.VITE_API_URL}/UserRoutes/listBlogs`,
+        {
+          refProductsId: import.meta.env.VITE_PRODUCT_ID,
+        },
+        { headers: { "Content-Type": "application/json" } }
+      )
+      .then((response: any) => {
+        const data = decrypt(
+          response.data[1],
+          response.data[0],
+          import.meta.env.VITE_ENCRYPTION_KEY
+        );
+        console.log("data", data);
+
+        if (data.success) {
+          const blogList = data.AllBlogs; // ✅ Removed duplication
+          setListBlogs(blogList);
+        }
+      })
+      .catch((error) => {
+        console.error("Failed to fetch blog:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  const handleViewMore = () => {
+    setVisibleCount(visibleCount === 3 ? listBlogs.length : 3);
+  };
+
+  const handleReadMore = (blog: Blog) => {
+    navigate("/blog-view", { state: { blog } });
+  };
+
+  const displayedBlogs = listBlogs.slice(0, visibleCount);
+
   return (
     <div>
-      <div className="BlogsBanner">
-        <div className="BlogsBannerOverlay">
-          <h1 className="BlogsBannerTitle uppercase underline">BLOGS</h1>
+      <div>
+        {/* Banner */}
+        <div className="BlogsBanner">
+          <div className="BlogsBannerOverlay">
+            <h1 className="BlogsBannerTitle uppercase underline">BLOGS</h1>
+          </div>
         </div>
-      </div>
 
-      <div className="blogCards flex w-full align-items-center justify-content-center">
-        <div className="flex w-full md:w-10/12 mx-auto lg:flex-row flex-col py-8 px-10 gap-10">
-          {blogsData.map((blog) => (
-            <div
-              key={blog.id}
-              className="cardTemplate flex flex-col flex-1 rounded-xl shadow-lg cursor-pointer"
-            >
-              <img src={blog.image} alt="blog-img" className="rounded-t-xl" />
-              <div className="flex flex-col">
-                <div className="flex items-center justify-evenly my-3">
-                  <div className="flex flex-col items-center bg-[#101828] text-white font-bold p-4 rounded-xl">
-                    <p className="text-2xl">{blog.date}</p>
-                    <p>{blog.month}</p>
+        {/* Blog Cards */}
+        <div className="blogCards flex w-full align-items-center justify-content-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full md:w-10/12 mx-auto py-8 px-10">
+            {displayedBlogs.map((blog, index) => (
+              <div
+                key={index}
+                className="cardTemplate flex flex-col rounded-xl shadow-lg cursor-pointer max-w-sm w-full"
+              >
+                <img
+                  src={blog.signedImageUrl || blogTemplateImg}
+                  alt="blog-img"
+                  className="rounded-t-xl h-48 object-cover w-full"
+                />
+
+                <div className="flex flex-col p-4">
+                  <div className="flex justify-between items-center mb-3">
+                    <p
+                      className="font-bold text-lg"
+                      title={blog.blogTitle} // Tooltip with full title
+                    >
+                      {blog.blogTitle
+                        ? blog.blogTitle.length > 30
+                          ? `${blog.blogTitle.slice(0, 30)}...`
+                          : blog.blogTitle
+                        : ""}
+                    </p>
+                    <p className="text-sm text-gray-500">{blog.blogDate}</p>
                   </div>
-                  <div className="flex text-xl items-center gap-1">
-                    <ShieldUser />
-                    <p>{blog.author}</p>
+
+                  <div
+                    className="text-center p-3 uppercase bg-orange-400 font-bold text-white rounded-xl flex items-center justify-center gap-3 hover:bg-orange-500 transition duration-300"
+                    onClick={() => handleReadMore(blog)}
+                  >
+                    <p>Read More</p>
                   </div>
-                  <div className="flex text-xl items-center gap-1">
-                    <Tags />
-                    <p>{blog.tag}</p>
-                  </div>
-                </div>
-                <p className="font-bold text-lg px-4 py-2 line-clamp-2">
-                  {blog.title}
-                </p>
-                <div className="text-center p-3 uppercase bg-blue-800 font-bold text-white rounded-b-xl flex items-center justify-center gap-3">
-                  <p>Read More</p>
-                  <TrendingUp />
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+
+        {/* View More Button */}
+        {listBlogs.length > 3 && (
+          <div className="flex justify-center mb-10">
+            <button
+              style={{ borderRadius: "50px" }}
+              className="text-center px-7 py-4 uppercase bg-orange-400 font-bold text-white flex items-center justify-center gap-3 hover:bg-orange-500 transition duration-300 mt-auto w-full max-w-xs mx-4"
+              onClick={handleViewMore}
+            >
+              {visibleCount === 3 ? "View More" : "View Less"}
+            </button>
+          </div>
+        )}
+      </div>
+      <div>
+        <Achievements />
       </div>
     </div>
   );

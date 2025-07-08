@@ -4,6 +4,7 @@ import "./Modules.css";
 import centerImage from "../../assets/modules/booking.png";
 import leftImage from "../../assets/modules/settings.png";
 import rightImage from "../../assets/modules/upload.png";
+import AdminRelease from "../15-AdminRelease/AdminRelease";
 
 // import Module001 from "../../assets/modules/001.jpg";
 
@@ -300,7 +301,16 @@ const Modules: React.FC = () => {
           </div>
         </div>
       </div> */}
+      {/* <div>
+        <AdminRelease/>
+      </div> */}
+   
+            
+      <div>
+        <AdminRelease />
+      </div>
     </div>
+
   );
 };
 

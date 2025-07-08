@@ -9,21 +9,25 @@ import {
 } from "lucide-react";
 import ERP from "../../assets/home/ERP.jpg";
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
+import AdminFeedback from "../16-AdminFeedback/AdminFeedback";
+// import Achievements from "../17-Achievements/Achievements";
+import ListUserReview from "../../components/Feedback/ListFeedback";
 
 const features = [
   {
     title: "Unified Courier Booking",
-    desc: "Easily book parcels through major partners like DTDC, Delhivery, BlueDart — all from one place.",
+    desc: "Easily book parcels through major partners like DTDC, Delhivery, BlueDart — all from one place.Easily book parcels through major partners like DTDC, Delhivery, BlueDart, all from one place.",
     icon: <Truck className="w-7 h-7 text-[#fca000]" />,
   },
   {
     title: "Real-Time Parcel Tracking",
-    desc: "Track consignments live with integrated APIs — no manual work.",
+    desc: "Track consignments live with integrated APIs, no manual work.",
     icon: <MapPin className="w-7 h-7 text-[#fca000]" />,
   },
   {
     title: "Role-Based Access",
-    desc: "Each user type—Admin, Finance, Staff—gets tailored dashboards & access.",
+    desc: "Each user type, Admin, Finance, Staff, gets tailored dashboards and access.",
     icon: <ShieldCheck className="w-7 h-7 text-[#fca000]" />,
   },
   {
@@ -51,15 +55,27 @@ const stats = [
 ];
 
 const Home: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-gray-50">
       {/* Hero Banner */}
       <div className="HomeBanner">
-        <div className="HomeBannerOverlay flex items-center justify-center h-[350px] text-white">
-          <h1 className="HomeBannerTitle text-4xl md:text-5xl font-bold uppercase underline">
-            {/* Welcome to Express Logistics ERP */}
-          </h1>
-        </div>
+     <div className="HomeBannerOverlay flex items-center justify-center h-[350px] text-white relative">
+  <div className="w-full h-full relative">
+    <div className="absolute top-10 right-6 md:top-20 md:right-30 text-right max-w-xs md:max-w-lg">
+      <h2 className="text-2xl md:text-5xl lg:text-5xl font-extrabold uppercase text-white leading-tight drop-shadow-lg">
+        Welcome to <br />
+        <span className="text-[#fca000]">Express Logistics ERP</span>
+      </h2>
+      <p className="mt-3 text-sm md:text-lg text-white font-medium drop-shadow-sm leading-snug">
+        Streamline your logistics, track shipments,<br className="hidden md:block" />
+        and manage operations with ease and efficiency.
+      </p>
+    </div>
+  </div>
+</div>
+
       </div>
 
       {/* Why Choose Us */}
@@ -79,13 +95,24 @@ const Home: React.FC = () => {
             <p className="text-gray-700 text-lg text-justify">
               Our ERP system is purpose-built for courier and microfinance
               businesses. We bring automation, real-time visibility, and
-              complete control across all operations—from parcel bookings to
+              complete control across all operations, from parcel bookings to
               payments, from employee access to reports.
             </p>
           </div>
           <div data-aos="fade-left">
-            <img src={ERP} alt="ERP" className="w-full rounded-xl shadow-xl" />
+            <img
+              src={ERP}
+              alt="ERP"
+              className="w-full h-90  object-cover rounded-xl shadow-xl"
+            />
           </div>
+          {/* <div data-aos="fade-left">
+            <img
+              src={ERP}
+              alt="ERP"
+              className="w-full h-80 object-cover rounded-xl shadow-xl"
+            />
+          </div> */}
         </div>
       </section>
 
@@ -141,10 +168,28 @@ const Home: React.FC = () => {
           daily operations. Get started today and streamline your workflows like
           never before.
         </p>
-        <button className="bg-white text-[#fca000] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 transition duration-300">
+        {/* <button
+          className="bg-white text-[#fca000] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 active:scale-95 transition-transform duration-300"
+          onClick={() => navigate("/contact")}
+        >
+          Request a Demo
+        </button> */}
+        <button
+          className="bg-white text-[#fca000] font-semibold px-6 py-3 rounded-full hover:bg-gray-100 active:scale-95 transition-transform duration-300"
+          onClick={() => {
+            navigate("/contact");
+            window.scrollTo(0, 0);
+          }}
+        >
           Request a Demo
         </button>
       </section>
+      <div>
+        <ListUserReview />
+      </div>
+      <div>
+        <AdminFeedback />
+      </div>
     </div>
   );
 };

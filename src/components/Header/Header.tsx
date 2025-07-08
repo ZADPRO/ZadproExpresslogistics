@@ -1,28 +1,47 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import logo from "../../assets/home/logo.png";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuStatus, setMenuStatus] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   const handleNavigation = (path: string) => {
     navigate(path);
     setMenuStatus(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  // Disable scroll effect on these pages:
+  const isNoScrollEffect =
+    location.pathname === "/blog-view" || location.pathname === "/release-view";
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
+      if (!isNoScrollEffect) {
+        if (window.scrollY > 10) {
+          setScrolled(true);
+        } else {
+          setScrolled(false);
+        }
       } else {
-        setScrolled(false);
+        setScrolled(false); // Reset scrolled state when on no-scroll pages
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isNoScrollEffect]);
+
+  const navLinkClass = `text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300`;
+
+  const textColor = isNoScrollEffect
+    ? "text-black hover:text-[#090a58]"
+    : scrolled
+    ? "text-black hover:text-[#090a58]"
+    : "text-white hover:text-[#090a58]";
 
   return (
     <div>
@@ -37,81 +56,56 @@ const Header: React.FC = () => {
         >
           <div className="w-[80%] h-[10vh] lg:w-[93%] flex justify-evenly items-center">
             <div className="w-[50%] lg:w-[30%] flex justify-start">
-              {/* <img src={logo} className="w-[250px]" alt="log" /> */}
-              <h2 className="companyName font-bold cursor-pointer flex lg:flex-row flex-col lg:gap-2">
+              {/* <h2 className="companyName font-bold cursor-pointer flex lg:flex-row flex-col lg:gap-2">
                 <span className="text-[#090a58] lg:text-[22px] text-[18px] tracking-wide">
                   ZAdPro{" "}
                 </span>
                 <span className="text-[#fca000] lg:text-[22px] text-[12px]">
                   Express Logistics
                 </span>
-              </h2>
+              </h2> */}
+              <Link to="/" className="flex items-center">
+                <img src={logo} alt="Logo" className="h-8 sm:h-10 md:h-12" />
+              </Link>
             </div>
+
             <div className="hidden lg:flex w-[90%] justify-center gap-x-10">
               <div
-                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
-                  scrolled
-                    ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
-                }`}
+                className={`${navLinkClass} ${textColor}`}
                 onClick={() => handleNavigation("/")}
               >
                 Home
               </div>
               <div
-                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
-                  scrolled
-                    ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
-                }`}
-                onClick={() => {
-                  handleNavigation("/about");
-                }}
+                className={`${navLinkClass} ${textColor}`}
+                onClick={() => handleNavigation("/about")}
               >
                 About
               </div>
               <div
-                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
-                  scrolled
-                    ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
-                }`}
-                onClick={() => {
-                  handleNavigation("/modules");
-                }}
+                className={`${navLinkClass} ${textColor}`}
+                onClick={() => handleNavigation("/modules")}
               >
                 Modules
               </div>
               <div
-                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
-                  scrolled
-                    ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
-                }`}
-                onClick={() => {
-                  handleNavigation("/blogs");
-                }}
+                className={`${navLinkClass} ${textColor}`}
+                onClick={() => handleNavigation("/blogs")}
               >
                 Blogs
               </div>
               <div
-                className={`text-[20px] cursor-pointer font-bold underline-animation transition duration-300 ease-in-out relative after:content-[''] after:block after:h-[2px] after:w-0 hover:after:w-full after:bg-[#fca000] after:transition-all after:duration-300 ${
-                  scrolled
-                    ? "text-black hover:text-[#090a58]"
-                    : "text-white hover:text-[#090a58]"
-                }`}
-                onClick={() => {
-                  handleNavigation("/contact");
-                }}
+                className={`${navLinkClass} ${textColor}`}
+                onClick={() => handleNavigation("/contact")}
               >
                 Contact
               </div>
             </div>
+
             <div className="w-[50%] lg:w-[10%] flex justify-end">
-              <p className="" style={{ cursor: "pointer" }}>
-                Icon
-              </p>{" "}
+              <p style={{ cursor: "pointer" }}>{/* Optional icon */}</p>
             </div>
+
             <div className="w-[0%] ml-14 flex lg:hidden justify-center items-center">
               <button
                 className={`relative order-10 cursor-pointer block self-center lg:hidden ${
@@ -142,7 +136,7 @@ const Header: React.FC = () => {
           </div>
         </div>
 
-        {/* Fullscreen Menu for Mobile */}
+        {/* Fullscreen Mobile Menu */}
         <div
           className={`w-full h-[90vh] overflow-y-auto z-50 mt-[10vh] fixed top-0 left-0 transition-all duration-500 ease-in-out bg-white transform ${
             menuStatus
@@ -154,41 +148,31 @@ const Header: React.FC = () => {
             <div className="w-[80%] mt-10">
               <div
                 className="text-[20px] cursor-pointer py-3 font-bold"
-                onClick={() => {
-                  handleNavigation("/");
-                }}
+                onClick={() => handleNavigation("/")}
               >
                 Home
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-bold"
-                onClick={() => {
-                  handleNavigation("/about");
-                }}
+                className="text-[20px] cursor-pointer py-3 font-bold"
+                onClick={() => handleNavigation("/about")}
               >
                 About
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-bold"
-                onClick={() => {
-                  handleNavigation("/modules");
-                }}
+                className="text-[20px] cursor-pointer py-3 font-bold"
+                onClick={() => handleNavigation("/modules")}
               >
                 Modules
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-bold"
-                onClick={() => {
-                  handleNavigation("/blogs");
-                }}
+                className="text-[20px] cursor-pointer py-3 font-bold"
+                onClick={() => handleNavigation("/blogs")}
               >
                 Blogs
               </div>
               <div
-                className="text-[20px] cursor-pointer  py-3 font-bold"
-                onClick={() => {
-                  handleNavigation("/contact");
-                }}
+                className="text-[20px] cursor-pointer py-3 font-bold"
+                onClick={() => handleNavigation("/contact")}
               >
                 Contact
               </div>

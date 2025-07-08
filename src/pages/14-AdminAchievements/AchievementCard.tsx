@@ -35,7 +35,7 @@ const AchievementCard: React.FC<Props> = ({ data, onEdit, onDelete }) => {
           <div className="flex gap-2">
             <button
               onClick={() => onEdit(data.id)}
-              className="text-blue-600 hover:text-blue-800"
+              className="text-orange-600 hover:text-orange-400"
               aria-label="Edit"
             >
               <Pencil size={18} />
