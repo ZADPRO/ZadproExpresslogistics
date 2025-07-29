@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import decrypt from "../../Helper";
-import axios from "axios"; 
+import axios from "axios";
 
 interface Product {
   refProductsName: string;
@@ -28,10 +28,10 @@ const Footer: React.FC = () => {
           response.data[0],
           import.meta.env.VITE_ENCRYPTION_KEY
         );
-        
-        console.log('data', data)
+
+        console.log("data", data);
         if (data.success) {
-  const productList = data.productImage;  // ✅ No duplication
+          const productList = data.productImage; // ✅ No duplication
           setProducts(productList);
         }
       })
